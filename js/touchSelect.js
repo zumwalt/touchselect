@@ -14,19 +14,25 @@
 
         var select = $(this),
             optgroup = $('optgroup', this),
-            option = $('option', this);
+            option = $('option', this),
+
+            genContainer = $('<div class="touch-select"><div class="touch-select-container"></div></div>'),
+            genSearch = $('<div class="touch-select-search-container"><input type="text" class="touch-select-search" placeholder="Search"></div>');
 
         select.css({
           'position' : 'absolute',
           'left' : -9999,
           'visibility' : 'hidden'
         });
-        select.before('<div class="touch-select"><div class="touch-select-search-container"><input type="text" class="touch-select-search" placeholder="Search"></div><div class="touch-select-container"></div></div>');
+        select.before(genContainer);
 
-        var container = $('.touch-select-container'),
-            search = $('.touch-select-search');
+        var container = $('.touch-select-container');
 
-        container.height($(this).parent().height() - 51);
+        if ( settings.search ) {
+          genSearch.prependTo('.touch-select');
+          var search = $('.touch-select-search');
+          container.height($(this).parent().height() - 51);
+        }
 
         optgroup.each(function(){
           container.append('<div class="touch-optgroup">'+$(this).attr("label")+'</div>');
@@ -40,24 +46,25 @@
           $(this).on('click', function(){
             $(this).toggleClass('active');
             var value = $(this).data('value');
-
             $('option[value="'+value+'"]').attr('selected', !$('option[value="'+value+'"]').is(':selected'));
-
           });
         });
 
-        // Filter the list
-        search.change( function(){
-          var filter = $(this).val(); // get the value of the input, which we use to filter
-          if (filter) {
-            $(container).find('a:not(:Contains(' + filter + '))').hide();
-            $(container).find('a:Contains(' + filter + ')').show();
-          } else {
-           $(container).find('a').show();
-          }
-        }).keyup(function(){
-          $(this).change();
-        });
+        if ( settings.search ) {
+          // Filter the list
+          search.change( function(){
+            var filter = $(this).val(); // get the value of the input, which we use to filter
+            if (filter) {
+              $(container).find('a:not(:Contains(' + filter + '))').hide();
+              $(container).find('a:Contains(' + filter + ')').show();
+            } else {
+             $(container).find('a').show();
+            }
+          }).keyup(function(){
+            $(this).change();
+          });
+        }
+
 
       });
 

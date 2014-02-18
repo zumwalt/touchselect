@@ -1,12 +1,18 @@
+/* line 4, ../scss/touchSelect.scss */
+.touch-select {
+  position: relative;
+}
 /* line 6, ../scss/touchSelect.scss */
 .touch-select .touch-select-search-container {
   background: #FFF;
   border-bottom: 1px solid #EEE;
   padding: 5px;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 2000;
 }
-/* line 12, ../scss/touchSelect.scss */
+/* line 14, ../scss/touchSelect.scss */
 .touch-select .touch-select-search-container .touch-select-search {
   border: 1px solid #ddd;
   border-radius: 20px;
@@ -14,7 +20,7 @@
   padding: 0 15px;
   width: 100%;
 }
-/* line 18, ../scss/touchSelect.scss */
+/* line 20, ../scss/touchSelect.scss */
 .touch-select .touch-select-search-container .touch-select-search:focus {
   border-color: #3498db;
   color: #3498db;
@@ -23,7 +29,7 @@
   -moz-box-shadow: 0 0 0;
   box-shadow: 0 0 0;
 }
-/* line 27, ../scss/touchSelect.scss */
+/* line 29, ../scss/touchSelect.scss */
 .touch-select .touch-select-container {
   position: absolute;
   width: 100%;
@@ -33,7 +39,7 @@
   top: 0px;
   overflow: auto;
 }
-/* line 36, ../scss/touchSelect.scss */
+/* line 38, ../scss/touchSelect.scss */
 .touch-select .touch-option {
   display: block;
   padding: 8px 20px;
@@ -43,7 +49,7 @@
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
-/* line 43, ../scss/touchSelect.scss */
+/* line 45, ../scss/touchSelect.scss */
 .touch-select .touch-option.active {
   background: #3498db;
   color: #FFF;
@@ -52,7 +58,7 @@
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-/* line 50, ../scss/touchSelect.scss */
+/* line 52, ../scss/touchSelect.scss */
 .touch-select .touch-optgroup {
   color: #aaa;
   padding: 8px 10px;

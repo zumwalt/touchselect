@@ -2,12 +2,14 @@
 
 // TouchSelect
 .touch-select {
-
+  position: relative;
   .touch-select-search-container {
     background: #FFF;
     border-bottom: 1px solid #EEE;
     padding: 5px;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 2000;
     .touch-select-search {
       border: 1px solid #ddd;

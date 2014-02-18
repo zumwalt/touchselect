@@ -7,10 +7,15 @@
       };
 
       var settings = $.extend({
-        search      : true
+        search      : true,
+        multiple    : null
       }, options);
 
       return this.each( function(){
+
+        if ( $(this).is("[multiple]") ) {
+          settings.multiple = true
+        }
 
         var select = $(this),
             optgroup = $('optgroup', this),
@@ -43,10 +48,27 @@
 
         var tOption = $('.touch-option');
         tOption.each(function(){
+          var value = $(this).data('value');
+
           $(this).on('click', function(){
-            $(this).toggleClass('active');
-            var value = $(this).data('value');
-            $('option[value="'+value+'"]').attr('selected', !$('option[value="'+value+'"]').is(':selected'));
+
+
+            if ( settings.multiple ) {
+
+              $(this).toggleClass('active');
+              $('option[value="'+value+'"]').attr('selected', !$('option[value="'+value+'"]').is(':selected'));
+
+            } else {
+
+              tOption.removeClass('active');
+              $('option', select).removeAttr('selected');
+
+              $(this).toggleClass('active');
+              $('option[value="'+value+'"]').attr('selected', !$('option[value="'+value+'"]').is(':selected'));
+
+            }
+
+
           });
         });
 
